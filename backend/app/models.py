@@ -7,7 +7,7 @@ current_timestamp = datetime.now()
 
 
 class UserManager(BaseUserManager):
-    def create_user(self, email, first_name, last_name, gender, date_of_birth, city, country, degree, phone, address, image, password=None, password2=None):
+    def create_user(self, email, first_name, last_name, gender, date_of_birth, role, city, country, degree, phone, address, image, password=None, password2=None):
         """
         Creates and saves a User with the given email, name, tc, password and password2.
         """
@@ -23,17 +23,17 @@ class UserManager(BaseUserManager):
             address=address,
             image=image,
             city=city,
+            role=role,
             country=country,
             degree=degree,
             date_of_birth=date_of_birth,
-            created_at=current_timestamp,
 
         )
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, first_name, last_name, gender, date_of_birth, city, country, degree, phone, address, image, password=None):
+    def create_superuser(self, email, first_name, last_name, gender, date_of_birth, role, city, country, degree, phone, address, image, password=None):
         """
         Creates and saves a superuser with the given email, date of
         birth and password.
@@ -48,10 +48,11 @@ class UserManager(BaseUserManager):
             address=address,
             image=image,
             city=city,
+            role=role,
             country=country,
             degree=degree,
             date_of_birth=date_of_birth,
-            created_at=current_timestamp,
+
 
 
         )
@@ -61,6 +62,10 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser):
+    ROLE_CHOICES = (
+        ('admin', 'Admin'),
+        ('user', 'User'),
+    )
     email = models.EmailField(verbose_name='Email',
                               max_length=255, unique=True)
     first_name = models.CharField(max_length=200)
@@ -74,6 +79,7 @@ class User(AbstractBaseUser):
     date_of_birth = models.DateField(null=True, blank=True)
     country = models.CharField(max_length=200)
     city = models.CharField(max_length=200)
+    role = models.CharField(max_length=200)
     image = models.ImageField(upload_to="register/")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
@@ -81,7 +87,7 @@ class User(AbstractBaseUser):
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name',
-                       'gender', 'phone', 'address', 'image', 'date_of_birth', 'city', 'country', 'degree', 'created_at']
+                       'gender', 'phone', 'address', 'image', 'date_of_birth', 'role', 'city', 'country', 'degree']
 
     def __str__(self):
         return self.first_name
@@ -109,7 +115,7 @@ class Project(models.Model):
     users = models.ForeignKey(
         "User", blank=True, null=True, on_delete=models.CASCADE)
     image = models.ImageField(upload_to="project/")
-    created_at = models.DateField(auto_now_add=False)
+    created_at = models.DateField(auto_now_add=True)
 
     def __str__(self):
         return self.name
@@ -121,7 +127,7 @@ class Service(models.Model):
     users = models.ForeignKey(
         "User", blank=True, null=True, on_delete=models.CASCADE)
     image = models.ImageField(upload_to="service/")
-    created_at = models.DateField(auto_now_add=False)
+    created_at = models.DateField(auto_now_add=True)
 
     def __str__(self):
         return self.name

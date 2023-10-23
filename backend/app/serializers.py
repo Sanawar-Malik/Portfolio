@@ -11,7 +11,7 @@ class ProjectSerializer(serializers.ModelSerializer):
 
 
 class ServiceSerializer(serializers.ModelSerializer):
-    class Mea:
+    class Meta:
         model = Service
         fields = '__all__'
 
@@ -24,7 +24,7 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['id', 'email', 'first_name', 'last_name', 'gender',
-                  'phone', 'address', 'image', 'password', 'password2', 'date_of_birth', 'city', 'country', 'degree', 'created_at']
+                  'phone', 'address', 'image', 'password', 'password2', 'role', 'date_of_birth', 'city', 'country', 'degree', 'created_at']
         extra_kwargs = {
             'password': {'write_only': True}
         }
@@ -38,7 +38,7 @@ class UserSerializer(serializers.ModelSerializer):
         return attrs
 
     def create(self, validate_data):
-        return Employee.objects.create_user(**validate_data)
+        return User.objects.create_user(**validate_data)
 
 
 class UserLoginSerializer(serializers.ModelSerializer):

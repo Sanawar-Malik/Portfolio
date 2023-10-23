@@ -4,12 +4,6 @@ from app.models import User, Project, Service
 # Register your models here.
 
 
-class DepartmentAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'manager',)
-    list_filter = ('name',)
-    search_fields = ('name', 'id',)
-
-
 class ProjectAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'description', 'users')
     list_filter = ('name',)
