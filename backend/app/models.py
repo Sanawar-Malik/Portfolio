@@ -80,7 +80,7 @@ class User(AbstractBaseUser):
     country = models.CharField(max_length=200)
     city = models.CharField(max_length=200)
     role = models.CharField(max_length=200)
-    image = models.ImageField(upload_to="register/")
+    image = models.ImageField(upload_to="images/")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     objects = UserManager()
@@ -114,7 +114,7 @@ class Project(models.Model):
     description = models.CharField(max_length=200)
     users = models.ForeignKey(
         "User", blank=True, null=True, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to="project/")
+    image = models.ImageField(upload_to="images/")
     created_at = models.DateField(auto_now_add=True)
 
     def __str__(self):
@@ -126,7 +126,7 @@ class Service(models.Model):
     description = models.CharField(max_length=200)
     users = models.ForeignKey(
         "User", blank=True, null=True, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to="service/")
+    image = models.ImageField(upload_to="images/")
     created_at = models.DateField(auto_now_add=True)
 
     def __str__(self):
