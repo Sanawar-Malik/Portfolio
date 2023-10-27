@@ -31,7 +31,7 @@ export const Nav = () => {
   return (
     <div>
       <nav>
-        <div className="h-4vh flex justify-between bg-site z-50 text-white lg:py-5 px-20 py-4 flex-1 fixed top-0 w-full">
+        <div className="h-[8vh] flex bg-[#2a0d5d] justify-between bg-site z-50 text-white lg:py-5 px-20 py-4 flex-1 fixed top-0 w-full">
           <div className="flex items-center flex-1">
             <span className="text-3xl font-bold">
               Logo

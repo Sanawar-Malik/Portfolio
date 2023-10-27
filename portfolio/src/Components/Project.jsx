@@ -5,18 +5,18 @@ import "swiper/css/pagination";
 import "swiper/css/free-mode";
 
 import { FreeMode, Pagination } from "swiper/modules";
-
-import { RxArrowTopRight } from "react-icons/rx";
 import { ServiceData } from "../constants";
+import { RxArrowTopRight } from "react-icons/rx";
 export const Project = () => {
   return (
     <div>
-      <div className="flex items-center justify-center flex-col h-[900px] bg-[#0d1137]">
+      <div className=" flex items-center justify-center flex-col h-[600px] bg-[#0d1137]">
+        <h1 className="font-bold text-white text-center items-center justify-center text-5xl py-4">Projects</h1>
         <Swiper
           breakpoints={{
             340: {
-              slidesPerView: 2,
-              spaceBetween: 15,
+              slidesPerView: 1.5,
+              spaceBetween: 25,
             },
             700: {
               slidesPerView: 3,
@@ -28,11 +28,11 @@ export const Project = () => {
             clickable: true,
           }}
           modules={[FreeMode, Pagination]}
-          className="max-w-[90%] lg:max-w-[80%]"
+          className="max-w-[90%] lg:max-w-[80%] border border-pink-600"
         >
           {ServiceData.map((item) => (
-            <SwiperSlide key={item.title}>
-              <div className="flex flex-col gap-6 mb-20 group relative shadow-lg text-white rounded-xl px-6 py-8 h-[250px] w-[215px] lg:h-[400px] lg:w-[350px] overflow-hidden cursor-pointer">
+            <SwiperSlide key={item.title} className="border border-pink-600">
+              <div className="flex flex-col gap-6 mb-20 group relative shadow-lg text-white rounded-xl px-6 py-4 h-[250px] w-[215px] lg:h-[400px] lg:w-[330px] overflow-hidden cursor-pointer">
                 <div
                   className="absolute inset-0 bg-cover bg-center"
                   style={{ backgroundImage: `url(${item.backgroundImage})` }}
@@ -48,6 +48,7 @@ export const Project = () => {
             </SwiperSlide>
           ))}
         </Swiper>
-      </div>    </div>
+      </div>
+    </div>
   )
 }

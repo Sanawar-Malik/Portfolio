@@ -10,7 +10,7 @@ export const Header = () => {
 
 
         <div className="relative z-10 flex flex-col h-full text-center">
-          <div className=" h-auto flex mx-auto md:flex-row  md:py-20 flex-col container text-white border border-white">
+          <div className=" h-auto flex mx-auto md:flex-row  md:py-20 flex-col container text-white">
             <div className="basis-[45%] m-auto mt-36 justify-center items-center text-center">
               <h1 className="text-[32px] font-semibold text-white mb-2 leading-normal">Muhammad Sanawar</h1>
               <h1 className="text-[24px] font-semibold leading-normal">I am a <span className="text-fuchsia-600"><TypeAnimation sequence={['Software Engineer', 'Developer', 2000, 'Designer', 2000,]} speed={300} /></span></h1>
