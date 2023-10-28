@@ -18,7 +18,7 @@ from django.core.files.base import ContentFile
 from django.views.decorators.http import require_http_methods
 from django.http import JsonResponse, HttpResponseNotAllowed
 from django.views.decorators.http import require_POST
-from rest_framework.decorators import permission_classes
+from rest_framework.decorators import permission_classes, api_view
 import json
 
 
@@ -45,16 +45,7 @@ class ProjectAPI(APIView):
     renderer_classes = [UserRenderer]
     permission_classes = [IsAuthenticated]
 
-    def get(self, request, pk=None, formate=None):
-        id = pk
-        if id is not None:
-            project = Project.objects.get(id=id)
-            serializer = ProjectSerializer(project)
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        project = Project.objects.all()
-        serializer = ProjectSerializer(project, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
-# -------------Create Project-----------------------
+    # -------------Create Project-----------------------
 
     def post(self, request, formate=None):
         serializer = ProjectSerializer(data=request.data)
@@ -97,15 +88,7 @@ class UserAPI(APIView):
     renderer_classes = [UserRenderer]
     permission_classes = [AllowAny, IsAuthenticated]
 
-    def get(self, request, pk=None, formate=None):
-        id = pk
-        if id is not None:
-            user = User.objects.get(id=id)
-            serializer = UserSerializer(user)
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        user = User.objects.all()
-        serializer = UserSerializer(user, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+
 # -------------Create Employee-----------------------
 
     def post(self, request, formate=None):
@@ -150,15 +133,7 @@ class ServiceAPI(APIView):
     renderer_classes = [UserRenderer]
     permission_classes = [IsAuthenticated]
 
-    def get(self, request, pk=None, formate=None):
-        id = pk
-        if id is not None:
-            service = Service.objects.get(id=id)
-            serializer = ServiceSerializer(service)
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        service = Service.objects.all()
-        serializer = ServiceSerializer(service, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+
 # -------------Create Salary-----------------------
 
     def post(self, request, formate=None):
@@ -222,3 +197,37 @@ class UserProfileView(APIView):
     def get(self, request, formate=None):
         serializer = UserProfileSerializer(request.user)
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+@api_view(['GET'])
+def project_get(request, pk=None, formate=None):
+    id = pk
+    if id is not None:
+        project = Project.objects.get(id=id)
+        serializer = ProjectSerializer(project)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    project = Project.objects.all()
+    serializer = ProjectSerializer(project, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def services_get(request, pk=None, formate=None):
+        id = pk
+        if id is not None:
+            service = Service.objects.get(id=id)
+            serializer = ServiceSerializer(service)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        service = Service.objects.all()
+        serializer = ServiceSerializer(service, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+@api_view(['GET'])
+def users_get(request, pk=None, formate=None):
+        id = pk
+        if id is not None:
+            user = User.objects.get(id=id)
+            serializer = UserSerializer(user)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        user = User.objects.all()
+        serializer = UserSerializer(user, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+

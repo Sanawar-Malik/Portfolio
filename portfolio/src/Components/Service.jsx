@@ -1,7 +1,7 @@
 export const Service = () => {
   return (
     <div>
-      <section class="bg-[#0d1137] py-8">
+      <section class="bg-gray-50 py-8">
         <div class="container mx-auto text-center px-4">
           <h2 class="text-2xl font-bold text-gray-800 mb-4">Features</h2>
           <div class="flex flex-wrap -mx-4">
