@@ -7,12 +7,12 @@ module.exports = {
       tertiary: 'Aldrich',
     },
 
-    extend: {
-      colors: {
-        primary: '#0a0a0a',
-        accent: '#B809C3',
-      },
-    },
+    variants: {
+      extend: {
+
+        inset: ["group-hover"],
+      }
+    }
   },
   plugins: [],
 };

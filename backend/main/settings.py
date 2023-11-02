@@ -39,11 +39,12 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'app.middleware.CustomMiddleware',
+    # 'app.middleware.CustomMiddleware',
 ]
 
 ROOT_URLCONF = 'main.urls'
@@ -124,6 +125,9 @@ REST_FRAMEWORK = {
         'rest_framework.parsers.MultiPartParser',
     ]
 }
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",  # Add the origin of your frontend application
+]
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 AUTH_USER_MODEL = 'app.User'

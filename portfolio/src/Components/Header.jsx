@@ -2,46 +2,53 @@ import { TypeAnimation } from "react-type-animation"
 import { AiFillGithub } from "react-icons/ai"
 import { FaLinkedinIn, FaTelegramPlane } from "react-icons/fa"
 import { FiTwitter } from "react-icons/fi"
+import Aos from "aos";
+import 'aos/dist/aos.css'
+import { useEffect } from "react";
 
 export const Header = () => {
+  useEffect(() => {
+    Aos.init({
+      easing: 'ease-out-quart',
+      delay: 0,
+      duration: 750
+    })
+  }, [])
+
   return (
-    <div>
-      <div className="relative bg-gradient-to-tr from-sky-300 via-sky-400 to-blue-500 h-[80vh] sm:h-[80vh] text-white overflow-hidden">
+    <div> <div className="bg-gradient-to-br  from-cyan-300 via-blue-500 to-blue-600 shadow shadow-2xl" id="/">
+      <div className="lg:px-12 px-4 flex flex-col md:flex-row-reverse items-center justify-between pt-36 pb-20 gap-5">
+        <div className="md:w-1/2 w-full flex justify-center items-center mx-auto">
+          <img src='./sanawar.jpg' alt="" className="rounded-full h-60 w-60 shadow-[rgba(8,112,184,0.7) 0px 0px 0px 2px, rgba(6,24,44,0.65) 0px 4px 6px -1px, rgba(255,255,255,0.08) 0px 1px 0px inset]" />
+        </div>
 
+        {/* left side */}
+        <div className="md:w-1/2 w-full mt-5">
 
-        <div className="relative z-10 flex flex-col flex-wrap-reverse h-full text-center">
-          <div className=" flex mx-auto md:flex-row  md:py-20 flex-col container text-white">
-            <div className="basis-[45%] m-auto mt-24 justify-center items-center text-center">
-              <h1 className="text-[32px] font-semibold text-white mb-2 leading-normal">Muhammad Sanawar</h1>
-              <h1 className="text-[24px] font-semibold leading-normal">I am a <span className="text-fuchsia-600"><TypeAnimation sequence={['Software Engineer', 'Developer', 2000, 'Designer', 2000,]} speed={300} /></span></h1>
-              <p class="text-lg text-gray-300 px-4 mb-8">I'm a software engineer and full stack web developer with a passion for crafting digital experiences. I specialize in creating dynamic, user-friendly web applications that seamlessly blend front-end aesthetics with back-end functionality.</p>
-              <div className="flex text-white mx-auto justify-center items-center mb-8 gap-5">
-                <div className="flex gap-8 text-center rounded-full">
-                  <a href="" className="text-fuchsia-600 hover:text-fuchsia-500 rounded-full glow p-2">
-                    <AiFillGithub className="text-[28px]" />
-                  </a>
-                  <a href="" className="text-fuchsia-600 hover:text-fuchsia-500 rounded-full glow p-2">
-                    <FaLinkedinIn className="text-[28px]" />
-                  </a>
-                  <a href="" className="text-fuchsia-600 hover:text-fuchsia-500 rounded-full glow p-2">
-                    <FaTelegramPlane className="text-[28px]" />
-                  </a>
-                  <a href="" className="text-fuchsia-600 hover:text-fuchsia-500 rounded-full glow p-2">
-                    <FiTwitter className="text-[28px]" />
-                  </a>
+          <h1 className="md:text-4xl text-4xl font-extrabold  text-headingcolor leading-snug md:leading-[76px] text-center uppercase">
+            Muhammad <span className="text-white">Sanawar</span>
+          </h1>
+          <h1 className="text-[30px] text-center uppercase font-semibold text-[#dcf3ff] leading-normal underline underline-offset-4 decoration-4 decoration-[#dcf3ff] "><TypeAnimation sequence={['Software Engineer', 2000, 'Developer', 2000, 'Designer', 2000,]} speed={400} repeat={Infinity} /></h1>
 
-                </div>
-
-              </div>
-            </div>
-            <div class="basis-[55%] relative flex justify-center items-center mb-4">
-              <div class="absolute animate-spin rounded-full h-80 w-80 border-t-4 border-b-4 border-purple-500"></div>
-              <img src="./sanawar.jpg" class="rounded-full h-72 w-72" />
+          <div className="flex text-white mx-auto justify-center mt-8 items-center gap-5">
+            <div className="flex gap-8 text-center rounded-full">
+              <a href="" className="bg-white text-blue-500 hover:text-slate-500 rounded-full  glow p-2">
+                <AiFillGithub className="text-[28px]" />
+              </a>
+              <a href="" className="bg-white text-blue-500 hover:text-sky-600 rounded-full glow p-2">
+                <FaLinkedinIn className="text-[28px]" />
+              </a>
+              <a href="" className="bg-white text-blue-500 hover:text-sky-600 rounded-full glow p-2">
+                <FaTelegramPlane className="text-[28px]" />
+              </a>
+              <a href="" className="bg-white text-blue-500 hover:text-sky-600 rounded-full glow p-2">
+                <FiTwitter className="text-[28px]" />
+              </a>
             </div>
           </div>
-
         </div>
       </div>
+    </div>
     </div >
 
   )
