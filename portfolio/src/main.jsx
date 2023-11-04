@@ -3,12 +3,7 @@ import ReactDOM, { createRoot } from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-import { Route, RouterProvider, Routes, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
-import { Login } from './Components/Login.jsx'
-import { Header } from './Components/Header.jsx'
-import { Project } from './Components/Project.jsx'
-import { Service } from './Components/Service.jsx'
+
 import { Provider } from 'react-redux'
 import { store } from './store/store.js'
 const queryClient = new QueryClient({

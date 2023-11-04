@@ -13,16 +13,14 @@ function App() {
         <Route path="/" element={<Layout />} />
         <Route path="/login" element={<Login />} />
         <Route path="/projects/:projectId" element={<Project />} />
-        <Route
-          exact
-          path="/login"
-          element={!access_token ? <Login /> : <Navigate to="/admin" />}
-        />
-        <Route
-          exact
-          path="/admin"
-          element={access_token ? <Admin /> : <Navigate to="/login" />}
-        />
+        <Route path="/admin" element={<Admin />}>
+          <Route path="/home" element={<Project />} />
+          <Route path="" element={<Project />} />
+          <Route path="/projects/:projectId" element={<Project />} />
+          <Route path="/projects/:projectId" element={<Project />} />
+        </Route>
+        <Route exact path="/login" element={!access_token ? <Login /> : <Navigate to="/admin" />} />
+        <Route exact path="/admin" element={access_token ? <Admin /> : <Navigate to="/login" />} />
       </Routes>
     </BrowserRouter>
   )
