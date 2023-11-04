@@ -1,7 +1,7 @@
 export const Education = () => {
   return (
     <div>
-      <div class="p-4 mt-4">
+      <div class="p-4 mt-4" id="education">
         <h1 className="text-5xl uppercase text-center mb-8 underline underline-offset-8 decoration-blue-500  font-bold bg-gradient-to-br from-cyan-300 via-blue-500 to-blue-600 bg-clip-text text-transparent mb-4">Education</h1>
         <div class="container">
           <div class="flex flex-col md:grid grid-cols-12 text-gray-50">

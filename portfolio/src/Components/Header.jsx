@@ -17,7 +17,7 @@ export const Header = () => {
 
   return (
     <div> <div className="bg-gradient-to-br  from-cyan-300 via-blue-500 to-blue-600 shadow shadow-2xl" id="/">
-      <div className="lg:px-12 px-4 flex flex-col md:flex-row-reverse items-center justify-between pt-36 pb-20 gap-5">
+      <div className="lg:px-12 px-4 flex flex-col md:flex-row-reverse items-center justify-between pt-32 pb-20 gap-5">
         <div className="md:w-1/2 w-full flex justify-center items-center mx-auto">
           <img src='./sanawar.jpg' alt="" className="rounded-full h-60 w-60 shadow-[rgba(8,112,184,0.7) 0px 0px 0px 2px, rgba(6,24,44,0.65) 0px 4px 6px -1px, rgba(255,255,255,0.08) 0px 1px 0px inset]" />
         </div>

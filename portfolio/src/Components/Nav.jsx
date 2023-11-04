@@ -33,16 +33,25 @@ export const Nav = () => {
         <Link to="home" spy={true} smooth={true} duration={500}>
           <li className="my-2 py-2 border-b border-slate-800 hover:bg-slate-400 hover:rounded-full">Home</li>
         </Link>
-        <Link to="project" spy={true} smooth={true} duration={500}>
+        <Link to="projects" spy={true} smooth={true} duration={500}>
           <li className="my-2 py-2 border-b border-slate-800 hover:bg-slate-400 hover:rounded-full">Project</li>
         </Link>
         <Link to="service" spy={true} smooth={true} duration={500}>
           <li className="my-2 py-2 border-b border-slate-800 hover:bg-slate-400 hover:rounded-full">Services</li>
         </Link>
 
+        <Link to="about" spy={true} smooth={true} duration={500}>
+          <li className="my-2 py-2 border-b border-slate-800 hover:bg-slate-400 hover:rounded-full">About</li>
+        </Link>
         <Link to="education" spy={true} smooth={true} duration={500}>
+          <li className="my-2 py-2 border-b border-slate-800 hover:bg-slate-400 hover:rounded-full">Education</li>
+        </Link>
+        <Link to="experience" spy={true} smooth={true} duration={500}>
           <li className="my-2 py-2 border-b border-slate-800 hover:bg-slate-400 hover:rounded-full">Experience</li>
         </Link>
+        <ReactLink to="Login" spy={true} smooth={true} duration={500}>
+          <li className="my-2 py-2 border-b border-slate-800 hover:bg-slate-400 hover:rounded-full">Login</li>
+        </ReactLink>
       </ul>
     </div>
   );
@@ -59,21 +68,29 @@ export const Nav = () => {
           </div>
           <div className="lg:flex md:flex lg: flex-1 items-center justify-end font-normal hidden">
             <div className="flex-10">
-              <ul className="flex gap-8 mr-16 text-[18px]">
+              <ul className="flex gap-6 text-[16px]">
                 <Link to="/" spy={true} smooth={true} duration={500}>
-                  <li className='uppercase transition hover:border-b-2 hover:border-sky-200 cursor-pointer'>Home</li>
+                  <li className='transition hover:border-b-2 hover:border-sky-200 cursor-pointer'>Home</li>
                 </Link>
-                <Link to="about" spy={true} smooth={true} duration={500}>
-                  <li className=' uppercase transition hover:border-b-2  hover:border-sky-200 cursor-pointer'>About</li>
-                </Link>
-                <Link to="project" spy={true} smooth={true} duration={500}>
-                  <li className='uppercase transition hover:border-b-2 hover:border-sky-200 cursor-pointer'>Projects</li>
+                <Link to="projects" spy={true} smooth={true} duration={500}>
+                  <li className='transition hover:border-b-2 hover:border-sky-200 cursor-pointer'>Projects</li>
                 </Link>
                 <Link to="service" spy={true} smooth={true} duration={500}>
-                  <li className='uppercase transition hover:border-b-2 hover:border-sky-200 cursor-pointer'>Services</li>
+                  <li className='transition hover:border-b-2 hover:border-sky-200 cursor-pointer'>Services</li>
                 </Link>
+                <Link to="about" spy={true} smooth={true} duration={500}>
+                  <li className='transition hover:border-b-2  hover:border-sky-200 cursor-pointer'>About</li>
+                </Link>
+
+                <Link to="education" spy={true} smooth={true} duration={500}>
+                  <li className='transition hover:border-b-2 hover:border-sky-200 cursor-pointer'>Education</li>
+                </Link>
+                <Link to="experience" spy={true} smooth={true} duration={500}>
+                  <li className='transition hover:border-b-2 hover:border-sky-200 cursor-pointer'>Experience</li>
+                </Link>
+
                 <ReactLink to="/login" spy={true} smooth={true} duration={500}>
-                  <li className='uppercase transition hover:border-b-2 hover:border-sky-200 cursor-pointer'>Experience</li>
+                  <li className='transition hover:border-b-2 hover:border-sky-200 cursor-pointer'>Login</li>
                 </ReactLink>
               </ul>
             </div>

@@ -1,7 +1,7 @@
 export const Experience = () => {
   return (
     <div>
-      <div class="bg-slate-100 p-4">
+      <div class="bg-slate-100 p-4" id="experience">
         <h2 class="text-3xl text-white font-bold mb-12">Chronology</h2>
         <div class="flex flex-col grid-cols-9 p-2 mx-auto md:grid">
           <div class="flex md:contents flex-row-reverse">

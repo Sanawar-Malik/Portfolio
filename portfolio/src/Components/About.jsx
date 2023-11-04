@@ -16,7 +16,7 @@ export const About = () => {
   };
 
   return (
-    <div>
+    <div id="about">
       <input
         placeholder="Input"
         type="text"

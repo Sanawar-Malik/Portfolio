@@ -9,6 +9,8 @@ import { Login } from './Components/Login.jsx'
 import { Header } from './Components/Header.jsx'
 import { Project } from './Components/Project.jsx'
 import { Service } from './Components/Service.jsx'
+import { Provider } from 'react-redux'
+import { store } from './store/store.js'
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -17,20 +19,14 @@ const queryClient = new QueryClient({
   },
 })
 
-const router = createBrowserRouter(createRoutesFromElements(
-  <Route>
-    <Route path='/' element={<App />} />
-    <Route path='/login' element={<Login />} />
-    <Route path='/projects/:projectId' element={<Project />} />
 
-
-  </Route>
-))
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
+    <Provider store={store}>
+      <QueryClientProvider client={queryClient}>
 
-      <RouterProvider router={router} />
-    </QueryClientProvider>
-  </React.StrictMode>,
+        <App />
+      </QueryClientProvider>
+    </Provider>
+  </React.StrictMode >
 )
