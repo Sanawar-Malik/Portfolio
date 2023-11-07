@@ -36,7 +36,7 @@ export const Projects = () => {
     <div>
 
 
-      <div className=" flex items-center justify-center flex-col my-32 container mx-auto bg-bg-gradient-to-bl from-fuchsia-100 to-green-100 " id="projects">
+      <div className=" flex items-center justify-center flex-col my-32 container mx-auto  " id="projects">
         <h1 className="text-5xl uppercase  underline underline-offset-8 decoration-blue-500  font-bold bg-gradient-to-br from-cyan-300 via-blue-500 to-blue-600 bg-clip-text text-transparent mb-12">Projects</h1>
         <div data-aos="fade-right" className="relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-6">
           {

@@ -1,5 +1,5 @@
-export { default as ServiceInfo } from './ServiceInfo';
+export { ServiceInfo } from './ServiceInfo';
 
-export { default as ServiceAdd } from './ServiceAdd';
-export { default as ServiceDelete } from './ServiceDelete';
-export { default as ServiceUpdate } from './ServiceUpdate';
+export { ServiceAdd } from './ServiceAdd';
+export { ServiceDelete } from './ServiceDelete';
+export { ServiceUpdate } from './ServiceUpdate';

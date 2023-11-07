@@ -1,5 +1,5 @@
-export { default as EducInfo } from './EducInfo';
+export { EducInfo } from './EducInfo';
 
-export { default as EduAdd } from './EduAdd';
-export { default as EducDelete } from './EducDelete';
-export { default as EducUpdate } from './EducUpdate';
+export { EduAdd } from './EduAdd';
+export { EducDelete } from './EducDelete';
+export { EducUpdate } from './EducUpdate';

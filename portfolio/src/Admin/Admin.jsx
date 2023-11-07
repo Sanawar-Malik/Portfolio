@@ -3,7 +3,7 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/solid";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link } from "react-scroll";
 import { removeToken } from "../services/tokenStorge";
 import { useNavigate } from "react-router-dom";
 
@@ -14,16 +14,16 @@ const Admin = () => {
     navigate('/')
   }
   let Links = [
-    { name: "Home", link: "home" },
-    { name: "About me", link: "about" },
-    { name: "Projects", link: "projects" },
-    { name: "Contact", link: "contact" },
+    { name: "Service", link: "service" },
+    { name: "Education", link: "education" },
+    { name: "Projects", link: "project" },
+    { name: "Experience", link: "experience" },
   ];
   let [open, setOpen] = useState(false);
 
   return (
-    <div className="w-full relative z-[100]">
-      <div className="md:flex items-center justify-between bg-white py-4 md:px-14 px-7 fixed top-0 left-0 right-0 shadow-sm">
+    <div className="w-full relative z-[400]">
+      <div className="md:flex items-center justify-between bg-gradient-to-r from-fuchsia-600 to-purple-600  text-white py-4 md:px-14 px-7 fixed top-0 left-0 right-0 shadow-sm">
         {/* logo section */}
         <div className="font-bold text-2xl tracking-wide cursor-pointer flex items-center gap-1">
 

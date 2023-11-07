@@ -1,8 +1,7 @@
-import { css } from '@emotion/core'
-
 export const EducInfo = () => {
   return (
-    <div>
+    <div className="mt-96" id="education">
+      <h1>Education</h1>
 
     </div>
   )

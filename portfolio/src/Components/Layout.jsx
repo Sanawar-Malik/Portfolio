@@ -1,3 +1,4 @@
+
 import { About } from "./About"
 import { Header } from "./Header"
 import { Nav } from "./Nav"
@@ -6,12 +7,13 @@ import { Service } from "./Service"
 
 export const Layout = () => {
   return (
-    <div className="">
+    <div className="bg-gradient-to-tl from-slate-100 via-neutral-100 to-slate-100">
       <Nav />
       <Header />
       <Projects />
       <Service />
       <About />
+
     </div>
 
   )

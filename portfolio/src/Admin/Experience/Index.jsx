@@ -1,5 +1,5 @@
-export { default as ExperInfo } from './ExperInfo';
+export { ExperInfo } from './ExperInfo';
 
-export { default as ExperAdd } from './ExperAdd';
-export { default as ExperDelete } from './ExperDelete';
-export { default as ExperUpdate } from './ExperUpdate';
+export { ExperAdd } from './ExperAdd';
+export { ExperDelete } from './ExperDelete';
+export { ExperUpdate } from './ExperUpdate';
