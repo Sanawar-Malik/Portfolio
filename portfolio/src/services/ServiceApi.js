@@ -2,21 +2,21 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { getToken } from "./tokenStorge";
 
 
-export const projectApi = createApi({
+export const serviceApi = createApi({
 
   reducerPath: 'ProjectApi',
   baseQuery: fetchBaseQuery({ baseUrl: "http://127.0.0.1:8000/api/" }), // Corrected "basequery" to "baseQuery"
   endpoints: (builder) => ({
-    allProjects: builder.query({
-      query: () => 'projects/',
+    allServices: builder.query({
+      query: () => 'services/',
 
 
     }),
-    postProject: builder.mutation({
+    postService: builder.mutation({
       query: (project) => {
         const { access_token } = getToken()
         return {
-          url: 'project/',
+          url: 'service/',
           method: 'POST',
           body: project,
           headers: {
@@ -25,11 +25,11 @@ export const projectApi = createApi({
         }
       }
     }),
-    updateProject: builder.mutation({
+    deleteService: builder.mutation({
       query: (id) => {
         const { access_token } = getToken()
         return {
-          url: `project/${id}/`,
+          url: `service/${id}/`,
           method: "DELETE",
           headers: {
             'authorization': `Bearer ${access_token}`,
@@ -39,14 +39,17 @@ export const projectApi = createApi({
 
       }
     }),
-    deleteProject: builder.mutation({
-      query: (id) => {
+    updateService: builder.mutation({
+      query: ({ id, formData }) => {
+        console.log(id)
         const { access_token } = getToken()
         return {
-          url: `project/${id}/`,
-          method: "DELETE",
+          url: `service/${id}/`,
+          method: "PUT",
+          body: formData,
           headers: {
             'authorization': `Bearer ${access_token}`,
+
           }
         }
       }
@@ -55,5 +58,5 @@ export const projectApi = createApi({
   })
 });
 
-export const { useAllProjectsQuery, usePostProjectMutation, useDeleteProjectMutation } = projectApi
+export const { useAllServicesQuery, usePostServiceMutation, useDeleteServiceMutation, useUpdateServiceMutation } = serviceApi
 

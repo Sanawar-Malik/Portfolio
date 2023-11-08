@@ -125,9 +125,35 @@ class Service(models.Model):
     name = models.CharField(max_length=200)
     description = models.CharField(max_length=200)
     users = models.ForeignKey(
-        "User", blank=True, null=True, on_delete=models.CASCADE)
+        "user", blank=True, null=True, on_delete=models.CASCADE)
     image = models.ImageField(upload_to="images/")
     created_at = models.DateField(auto_now_add=True)
 
     def __str__(self):
         return self.name
+
+
+class Education(models.Model):
+    degree = models.CharField(max_length=100)
+    institute = models.CharField(max_length=100)
+    users = models.ForeignKey(
+        "user", blank=True, null=True, on_delete=models.CASCADE)
+    start_date = models.DateField(null=True, blank=True)
+    end_date = models.DateField(null=True, blank=True)
+
+    def __str__(self):
+        return self.degree
+
+
+class Experience(models.Model):
+    name = models.CharField(max_length=100)
+    company = models.CharField(max_length=100)
+    location = models.CharField(max_length=100)
+    users = models.ForeignKey(
+        "user", blank=True, null=True, on_delete=models.CASCADE)
+    start_date = models.DateField(null=True, blank=True)
+    end_date = models.DateField(null=True, blank=True)
+    description = models.TextField()
+
+    def __str__(self):
+        return f"{self.name} at {self.company}"

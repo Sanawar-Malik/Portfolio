@@ -1,7 +1,7 @@
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
-from app.serializers import UserLoginSerializer, UserProfileSerializer, UserSerializer, ServiceSerializer,  ProjectSerializer
+from app.serializers import UserLoginSerializer, SendPasswordResetEmailSerializer, UserProfileSerializer, ChangePasswordSerializer, UserSerializer, ServiceSerializer,  ProjectSerializer, EducationSerializer, ExperienceSerializer
 from rest_framework import status
 from rest_framework.response import Response
 from django.contrib.auth import authenticate
@@ -9,7 +9,7 @@ from app.renderers import UserRenderer
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.permissions import AllowAny
-from .models import User, Service, Project
+from .models import User, Service, Project, Experience, Education
 from rest_framework.parsers import MultiPartParser, FormParser
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
@@ -91,6 +91,7 @@ class UserAPI(APIView):
 
 # -------------Create Employee-----------------------
 
+
     def post(self, request, formate=None):
         serializer = UserSerializer(data=request.data)
         print(request.data)
@@ -136,6 +137,7 @@ class ServiceAPI(APIView):
 
 # -------------Create Salary-----------------------
 
+
     def post(self, request, formate=None):
         serializer = ServiceSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
@@ -170,6 +172,94 @@ class ServiceAPI(APIView):
         serializer = ServiceSerializer(service, data=request.data)
         service.delete()
         return Response({'msg': 'Service Delete Completely'})
+
+
+class ExperienceAPI(APIView):
+    renderer_classes = [UserRenderer]
+    permission_classes = [IsAuthenticated]
+
+
+# -------------Create Salary-----------------------
+
+
+    def post(self, request, formate=None):
+        serializer = ExperienceSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response({'msg': 'Service Create Successfully'}, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_Bad_Request)
+
+# --------------Update Salary-----------------------
+    def put(self, request, pk, formate=None):
+        id = pk
+        experience = Experience.objects.get(pk=id)
+        serializer = ExperienceSerializer(experience, data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response({'msg': 'Completely data Update'})
+        return Response(serializer.errors, status=status.HTTP_400_Bad_Request)
+
+    def patch(self, request, pk, formate=None):
+        id = pk
+        experience = Experience.objects.get(pk=id)
+        serializer = ExperienceSerializer(
+            experience, data=request.data, partial=True)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response({'msg': 'Partial Data Update'})
+        return Response(serializer.errors, status=status.HTTP_400_Bad_Request)
+# -----------------Delete Task-----------------------
+
+    def delete(self, request, pk, formate=None):
+        id = pk
+        experience = Experience.objects.get(pk=id)
+        serializer = ExperienceSerializer(experience, data=request.data)
+        experience.delete()
+        return Response({'msg': 'Experience Delete Completely'})
+
+
+class EducationAPI(APIView):
+    renderer_classes = [UserRenderer]
+    permission_classes = [IsAuthenticated]
+
+
+# -------------Create Salary-----------------------
+
+
+    def post(self, request, formate=None):
+        serializer = EducationSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response({'msg': 'Education Create Successfully'}, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_Bad_Request)
+
+# --------------Update Salary-----------------------
+    def put(self, request, pk, formate=None):
+        id = pk
+        eduction = Education.objects.get(pk=id)
+        serializer = EducationSerializer(eduction, data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response({'msg': 'Completely data Update'})
+        return Response(serializer.errors, status=status.HTTP_400_Bad_Request)
+
+    def patch(self, request, pk, formate=None):
+        id = pk
+        eduction = Education.objects.get(pk=id)
+        serializer = EducationSerializer(
+            eduction, data=request.data, partial=True)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response({'msg': 'Partial Data Update'})
+        return Response(serializer.errors, status=status.HTTP_400_Bad_Request)
+# -----------------Delete Task-----------------------
+
+    def delete(self, request, pk, formate=None):
+        id = pk
+        eduction = Education.objects.get(pk=id)
+        serializer = EducationSerializer(eduction, data=request.data)
+        eduction.delete()
+        return Response({'msg': 'Education Delete Completely'})
 
 
 class UserLoginView(APIView):
@@ -210,24 +300,72 @@ def project_get(request, pk=None, formate=None):
     serializer = ProjectSerializer(project, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
+
+class UserChangePasswordView(APIView):
+    renderer_classes = [UserRenderer]
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, format=None):
+        serializer = ChangePasswordSerializer(
+            data=request.data, context={'user': request.user})
+        if serializer.is_valid(raise_exception=True):
+            # Change the response structure
+            return Response({'msg': 'Password Change Successfully'})
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class SendPasswordResetEmailView(APIView):
+    def post(self, request):
+        serializer = SendPasswordResetEmailSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            # Change the response structure
+            return Response({'msg': 'Password Reset link send. Check Your Email'})
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
 @api_view(['GET'])
 def services_get(request, pk=None, formate=None):
-        id = pk
-        if id is not None:
-            service = Service.objects.get(id=id)
-            serializer = ServiceSerializer(service)
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        service = Service.objects.all()
-        serializer = ServiceSerializer(service, many=True)
+    id = pk
+    if id is not None:
+        service = Service.objects.get(id=id)
+        serializer = ServiceSerializer(service)
         return Response(serializer.data, status=status.HTTP_200_OK)
+    service = Service.objects.all()
+    serializer = ServiceSerializer(service, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
+
 @api_view(['GET'])
 def users_get(request, pk=None, formate=None):
-        id = pk
-        if id is not None:
-            user = User.objects.get(id=id)
-            serializer = UserSerializer(user)
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        user = User.objects.all()
-        serializer = UserSerializer(user, many=True)
+    id = pk
+    if id is not None:
+        user = User.objects.get(id=id)
+        serializer = UserSerializer(user)
         return Response(serializer.data, status=status.HTTP_200_OK)
+    user = User.objects.all()
+    serializer = UserSerializer(user, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
 
+
+@api_view(['GET'])
+def experience_get(request, pk=None, formate=None):
+    id = pk
+    if id is not None:
+        experience = Experience.objects.get(id=id)
+        serializer = ExperienceSerializer(experience)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    experience = Experience.objects.all()
+    serializer = ExperienceSerializer(experience, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+@api_view(['GET'])
+def education_get(request, pk=None, formate=None):
+    id = pk
+    if id is not None:
+        education = Education.objects.get(id=id)
+        serializer = EducationSerializer(education)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    education = Education.objects.all()
+    serializer = EducationSerializer(education, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)

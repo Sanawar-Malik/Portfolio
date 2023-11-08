@@ -1,11 +1,25 @@
 from django.contrib import admin
-from app.models import User, Project, Service
+from app.models import User, Project, Service, Education, Experience
 
 # Register your models here.
 
 
 class ProjectAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'description', 'users')
+    list_filter = ('name',)
+    search_fields = ('name', 'id',)
+
+
+class EducationAdmin(admin.ModelAdmin):
+    list_display = ('id', 'degree', 'users',
+                    'institute', 'start_date', 'end_date')
+    list_filter = ('degree',)
+    search_fields = ('degree', 'id',)
+
+
+class ExperirnceAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name', 'description', 'users',
+                    'company', 'location', 'start_date', 'end_date')
     list_filter = ('name',)
     search_fields = ('name', 'id',)
 
@@ -38,5 +52,7 @@ class ServiceAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Project, ProjectAdmin)
+admin.site.register(Education, EducationAdmin)
+admin.site.register(Experience, ExperirnceAdmin)
 admin.site.register(User, UserAdmin)
 admin.site.register(Service, ServiceAdmin)

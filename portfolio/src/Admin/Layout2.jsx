@@ -6,7 +6,7 @@ import { ServiceInfo } from "./Service/ServiceInfo"
 
 export const Layout2 = () => {
   return (
-    <div className="bg-gray-200">
+    <div className="bg-gray-200 mb-8">
       <Admin />
       <ProjectInfo />
       <ServiceInfo />

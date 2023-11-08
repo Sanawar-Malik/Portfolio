@@ -1,21 +1,32 @@
 import { useState } from "react";
 import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
 import { ProjectAdd } from "./ProjectAdd";
-import { useAllProjectsQuery, useDeleteProjectMutation } from "../../services/ProjectApi";
+
 import { IconButton, Tooltip } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { ProjectUpdate } from "./ProjectUpdate";
+import { ProjectDelete } from "./ProjectDelete";
+import { useAllProjectQuery } from "../../services/ProjectsApi";
 
 export const ProjectInfo = () => {
-  const { data: projects, isLoading, isError, error, isSuccess } = useAllProjectsQuery();
-  const [deleteProject] = useDeleteProjectMutation()
+  const { data: projects, isLoading, error } = useAllProjectQuery()
+  console.log(projects)
   const [id, setId] = useState();
   const [showModal, setShowModal] = useState();
   const [UpdateModel, setUpdateModal] = useState();
+  const [DeleteModal, setDeleteModal] = useState();
+  if (isLoading) {
+    return <h1>Loading...</h1>
+  }
+
+  if (error) {
+    return <span>Error: {error.message}</span>
+  }
+
   return (
-    <div>
-      <div className="mx-auto bg-white h-screen pt-20 mt-12 shadow-2xl rounded-md w-11/12">
+    <div id="project">
+      <div className="mx-auto bg-white h-auto pt-20 mt-12 pb-4  shadow-2xl rounded-md w-11/12">
         <div className="flex justify-between w-full p-4  ">
           <h1 className="ml-3 text-4xl underline-offset-8 underline font-bold ">Project</h1>
           <div>
@@ -51,7 +62,7 @@ export const ProjectInfo = () => {
                   </th>
                   <th
                     className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left font-bold text-gray-600 uppercase tracking-wider">
-                    Created-at
+                    Description
                   </th>
                   <th
                     className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left font-bold text-gray-600 uppercase tracking-wider">
@@ -83,12 +94,11 @@ export const ProjectInfo = () => {
                         </Tooltip>
                         {UpdateModel && <ProjectUpdate id={id} setUpdateModal={setUpdateModal} />}
                         <Tooltip title="Delete">
-                          <IconButton onClick={() => deleteProject(project?.id)}>
-                            <DeleteIcon className="text-red-500" />
-
+                          <IconButton onClick={() => [setId(project.id), setDeleteModal(true)]}>
+                            <DeleteIcon />
                           </IconButton>
                         </Tooltip>
-
+                        {DeleteModal && <ProjectDelete id={id} setDeleteModal={setDeleteModal} />}
 
                       </div>                   </td>
 

@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from app.views import UserProfileView, UserLoginView, UserAPI, ProjectAPI, ServiceAPI, project_get, services_get, users_get
+from app.views import UserProfileView, SendPasswordResetEmailView, UserLoginView, UserAPI, ProjectAPI, UserChangePasswordView, ServiceAPI, ExperienceAPI, EducationAPI, experience_get, education_get, project_get, services_get, users_get
 urlpatterns = [
     path('login/', UserLoginView.as_view(), name='login'),
     path('profile/', UserProfileView.as_view(), name='profile'),
@@ -10,6 +10,15 @@ urlpatterns = [
     path('user/<int:pk>/', UserAPI.as_view(), name='user'),
     path('service/', ServiceAPI.as_view(), name='service'),
     path('service/<int:pk>/', ServiceAPI.as_view(), name='service'),
+    path('experience/', ExperienceAPI.as_view(), name='experience'),
+    path('experience/<int:pk>/', ExperienceAPI.as_view(), name='experience'),
+    path('education/', EducationAPI.as_view(), name='education'),
+    path('education/<int:pk>/', EducationAPI.as_view(), name='education'),
+    path('changepassword/', UserChangePasswordView.as_view(), name='changepassword'),
+    path('send-reset-password-email/',
+         SendPasswordResetEmailView.as_view(), name='sendrestpassword'),
+
+
 
 
     # ----------------------functional components-----------------
@@ -18,7 +27,11 @@ urlpatterns = [
     path('services/', views.services_get, name='services_list'),
     path('services/<int:pk>/', views.services_get, name='service'),
     path('users/<int:pk>/', views.users_get, name='user'),
-    path('users/', views.users_get, name='user_list')
+    path('users/', views.users_get, name='user_list'),
+    path('experiences/', views.experience_get, name='experience_list'),
+    path('experiences/<int:pk>/', views.experience_get, name='experience_list'),
+    path('educations/', views.education_get, name='education_list'),
+    path('educations/<int:pk>/', views.education_get, name='education_list')
 
 
 

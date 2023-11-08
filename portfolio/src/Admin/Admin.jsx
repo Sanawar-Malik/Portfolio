@@ -14,9 +14,9 @@ const Admin = () => {
     navigate('/')
   }
   let Links = [
+    { name: "Projects", link: "project" },
     { name: "Service", link: "service" },
     { name: "Education", link: "education" },
-    { name: "Projects", link: "project" },
     { name: "Experience", link: "experience" },
   ];
   let [open, setOpen] = useState(false);
@@ -42,7 +42,7 @@ const Admin = () => {
             }`}
         >
           {Links.map((link) => (
-            <li className="md:ml-8 md:my-0 mt-5 font-semibold text-xl border-b-2 md:border-b-0 text-right px-7 md:px-4 pb-4 md:pb-0 cursor-pointer" key={link.name}>
+            <li className="md:ml-8 md:my-0 mt-5 font-semibold text-xl border-b-2 md:border-b-0 text-right px-7 text-black md:text-white md:px-4 pb-4 md:pb-0 cursor-pointer" key={link.name}>
               <Link
                 to={link.link}
                 activeClass="active"
@@ -55,7 +55,7 @@ const Admin = () => {
               </Link>
             </li>
           ))}
-          <li className="md:ml-8 md:my-0 mt-5 font-semibold text-xl border-b-2 md:border-b-0 text-right px-7 md:px-4 pb-4 md:pb-0 cursor-pointer">
+          <li className="md:ml-8 md:my-0 mt-5 font-semibold text-xl border-b-2 md:border-b-0 text-right px-7 text-black md:text-white md:px-4 pb-4 md:pb-0 cursor-pointer">
             <Link
               to="" onClick={handleLogout}
               activeClass="active"

@@ -1,9 +1,10 @@
 import CloseIcon from '@mui/icons-material/Close';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+
 import { useNavigate } from 'react-router-dom';
-import { usePostProjectMutation } from '../../services/ProjectApi';
 import MDEditor from '@uiw/react-md-editor';
+import { usePostProjectMutation } from '../../services/ProjectsApi';
+
 export const ProjectAdd = ({ setShowModal }) => {
   const [addProject, { isLoading }] = usePostProjectMutation()
   const [server_error, setServerError] = useState({})
@@ -11,6 +12,9 @@ export const ProjectAdd = ({ setShowModal }) => {
   const [name, setname] = useState('')
   const [description, setdescription] = useState('')
   const [image, setimage] = useState(null)
+  const handleDescriptionChange = (newDescription) => {
+    setdescription(newDescription);
+  };
   const handleSubmit = async (e) => {
     e.preventDefault()
     const formData = new FormData();
@@ -19,13 +23,9 @@ export const ProjectAdd = ({ setShowModal }) => {
     formData.append("description", description);
     formData.append("image", image);
     console.log("Form Data:", formData);
-    // Logging
-    console.log("After setting image state:", image);
-    console.log("name:", name);
-    console.log("description:", description);
-    for (var pair of formData.entries()) {
-      console.log(pair[0] + ', ' + pair[1]);
-    }
+    // for (var pair of formData.entries()) {
+    //   console.log(pair[0] + ', ' + pair[1]);
+    // }
 
     const res = await addProject(formData);
     console.log(res)
@@ -38,14 +38,14 @@ export const ProjectAdd = ({ setShowModal }) => {
     if (res.data) {
       console.log(typeof (res.data))
       console.log(res.data)
-      storeToken(res.data.token)
-      navigate("/admin")
+      navigate("admin")
     }
   }
+
   return (
     <div className=''>
       {server_error.non_field_errors ? console.log(server_error.non_field_errors[0]) : ""}
-      <div className="flex  overflow-x-hidden mt-12  overflow-y-auto fixed  inset-0 z-50 bg-black bg-opacity-50 outline-none focus:outline-none">
+      <div className="flex  overflow-x-hidden mt-12  overflow-y-auto fixed  inset-0 z-50 bg-gray-900 bg-opacity-50 outline-none focus:outline-none">
 
         <div className="relative w-4/5 sm mx-auto bg-white my-10">
           <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
@@ -60,7 +60,7 @@ export const ProjectAdd = ({ setShowModal }) => {
                 <div className='mb-2'>
                   <label for="new-password" className="block text-sm font-medium text-gray-700">Name</label>
                   <div className="mt-1">
-                    <input type="text" name="name" id='name' value={name} onChange={e => setname(e.target.value)} required
+                    <input type="text" name="name" id='name' onChange={e => setname(e.target.value)} required
                       className="px-2 py-3 mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm" />
                   </div>
                   {server_error.name ? <p className='text-sm text-red-400'>{server_error.name[0]}</p> : ""}
@@ -77,7 +77,8 @@ export const ProjectAdd = ({ setShowModal }) => {
                 <div >
                   <label className="block text-sm font-medium text-gray-700">Description</label>
                   <div className="mt-1 row-col-">
-                    <MDEditor type="text" name="description" id='description' value={description} onChange={e => setdescription(e.target.value)} required
+                    <MDEditor type="text" value={description}
+                      onChange={handleDescriptionChange} required
                       className="px-2 py-3 h-[500px] block w-full rounded-md border border-gray-300 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm" />
                   </div>
                   {server_error.description ? <p className='text-sm text-red-400'>{server_error.description[0]}</p> : ""}
