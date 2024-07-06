@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from app.views import UserProfileView, SendPasswordResetEmailView, UserLoginView, UserAPI, ProjectAPI, UserChangePasswordView, ServiceAPI, ExperienceAPI, EducationAPI, experience_get, education_get, project_get, services_get, users_get
+from app.views import UserProfileView, SendPasswordResetEmailView,UserPasswordResetView, UserLoginView, UserAPI, ProjectAPI, UserChangePasswordView, ServiceAPI, ExperienceAPI, EducationAPI, experience_get, education_get, project_get, services_get, users_get
 urlpatterns = [
     path('login/', UserLoginView.as_view(), name='login'),
     path('profile/', UserProfileView.as_view(), name='profile'),
@@ -14,10 +14,10 @@ urlpatterns = [
     path('experience/<int:pk>/', ExperienceAPI.as_view(), name='experience'),
     path('education/', EducationAPI.as_view(), name='education'),
     path('education/<int:pk>/', EducationAPI.as_view(), name='education'),
-    path('changepassword/', UserChangePasswordView.as_view(), name='changepassword'),
+    path('changepassword/', UserChangePasswordView.as_view(), name='change-password'),
     path('send-reset-password-email/',
-         SendPasswordResetEmailView.as_view(), name='sendrestpassword'),
-
+         SendPasswordResetEmailView.as_view(), name='send-reset-password-email'),
+    path('reset-password/<uid>/<token>/', UserPasswordResetView.as_view(), name='reset-password'),
 
 
 
